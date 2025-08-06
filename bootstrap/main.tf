@@ -46,3 +46,17 @@ module "create_project" {
     depends_on = [ module.create_folder ]
 
 }
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Store Secrets for deployments
+# ----------------------------------------------------------------------------------------------------------------------
+module "secrets" {
+    source = "./modules/secrets"
+
+    # Host Project
+    host_project_name = module.create_project.project_id
+    # Billing Account
+    billing_account_id = var.billing_account_id
+
+    depends_on = [ module.create_project ]
+}

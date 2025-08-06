@@ -19,10 +19,16 @@ cd Infra
 terraform init
 terraform plan
 terraform
-
+```
 
 # Required Permissions
 ```
 roles/resourcemanager.folderCreator
 roles/billing.user
 roles/resourcemanager.projectCreator
+```
+
+# Process
+- Create the bootstrap project
+  - This will contain the cloudbuild process, and the secrets for the billing account
+  - This will setup the SA and folder which will contain the new projects and give the SA permission to do its taks
