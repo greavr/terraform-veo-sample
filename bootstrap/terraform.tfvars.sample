@@ -1,0 +1,5 @@
+# terraform.tfvars
+folder_display_name         = "123456"
+billing_account_id          = "1234567890"
+project_admins              = ["a@b.com"]
+org_id                      = "123456"

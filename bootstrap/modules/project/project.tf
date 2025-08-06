@@ -1,8 +1,32 @@
-resource "google_project" "new_project" {
-  provider = google.impersonated
+# ----------------------------------------------------------------------------------------------------------------------
+# Create Project
+# ----------------------------------------------------------------------------------------------------------------------
+# A random suffix to ensure project IDs are globally unique
+resource "random_id" "suffix" {
+  byte_length = 4
+}
 
-  name            = var.project_id
-  project_id      = var.project_id
-  folder_id       = google_folder.new_folder.folder_id
+resource "google_project" "project" {
+  name            = var.project_name
+  project_id      = "${var.project_name}-${random_id.suffix.hex}"
+  folder_id       = var.parent_folder
   billing_account = var.billing_account_id
+
+  labels = {
+    terraform = "true"
+    env       = "veo"
+  }
+}
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Enable APIs
+# ----------------------------------------------------------------------------------------------------------------------
+resource "google_project_service" "enable-services" {
+    for_each = toset(var.services_to_enable)
+
+    project = google_project.project.id
+    service = each.value
+    disable_on_destroy = false
+
+    depends_on = [ google_project.project ]
 }

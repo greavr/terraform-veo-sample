@@ -1,0 +1,33 @@
+steps:
+  # 1. Initialize Terraform with a GCS backend
+  # This step sets up Terraform to use your GCS bucket for state storage.
+  - name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'terraform'
+    args:
+      - 'init'
+      - '-backend-config=bucket=YOUR_GCS_BUCKET_FOR_TFSTATE'
+
+  # 2. Run Terraform Plan
+  # This step generates an execution plan and saves it to a file.
+  # The secret 'my-secret' is made available as an environment variable TF_VAR_api_key.
+  - name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'terraform'
+    args: ['plan', '-out=tfplan']
+    secretEnv: ['TF_VAR_api_key']
+
+  # 3. Run Terraform Apply
+  # This step applies the changes defined in the plan file.
+  - name: 'hashicorp/terraform:1.0.0'
+    entrypoint: 'terraform'
+    args: ['apply', '-auto-approve', 'tfplan']
+    secretEnv: ['TF_VAR_api_key']
+
+# This section makes secrets from Secret Manager available to the build steps.
+availableSecrets:
+  secretManager:
+  - versionName: projects/YOUR_PROJECT_ID/secrets/YOUR_SECRET_NAME/versions/latest
+    env: 'TF_VAR_api_key' # Maps the secret value to this environment variable
+
+# Recommended settings
+options:
+  logging: CLOUD_LOGGING_ONLY
