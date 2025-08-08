@@ -1,5 +1,6 @@
 # terraform.tfvars
-parent_folder               = "1234567890"
+org_id                      = "1234567890"
 billing_account_id          = "XXXXX"
-default_admins              = ["a@b.com", "a@b.com"]
+default_admins              = ["a@bc.com"]
 billing_alert_email         = ["a@b.com"]
+host_project_id             = "abcd"

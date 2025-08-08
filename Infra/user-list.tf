@@ -1,15 +1,15 @@
 # ----------------------------------------------------------------------------------------------------------------------
-# User Variable List
+# Group Variable List
 # ----------------------------------------------------------------------------------------------------------------------
 
-variable "user_list" {
+variable "group_list" {
     type = list(object({
         email = string
         region = string
         })
     )
     default = [{
-            region = "northamerica-northeast2"
+            region = "us-west1"
             email = "vpc-test@rgreaves.altostrat.com"
         },
         {

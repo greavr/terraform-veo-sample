@@ -1,12 +1,6 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Variables
 # ----------------------------------------------------------------------------------------------------------------------
-# Parent Folder
-variable "parent_folder" {
-    type = string
-    description = "Folder underwhich to create all the projects"
-}
-
 # Billing Account
 variable "billing_account_id" {
     type = string
@@ -23,6 +17,27 @@ variable "billing_alert_email" {
 variable "default_admins" {
     type = list(string)
     description = "List of Email addresses to make as admin"
+}
+
+# Org ID
+variable "org_id" {
+  description = "The ID of the organization where resources will be created."
+  type        = string
+}
+
+# Host project ID
+variable "host_project_id" {
+    description = "Project used to configure billing alerts and run the cloud function script"
+    type = string
+}
+# ----------------------------------------------------------------------------------------------------------------------
+# Default Variables
+# ----------------------------------------------------------------------------------------------------------------------
+# Parent Folder
+variable "folder_display_name" {
+    type = string
+    description = "Name of the folder to host the projects"
+    default = "Veo Land"
 }
 
 # List of projects & gcp region to create
@@ -131,4 +146,12 @@ variable "project_services" {
         "geminicloudassist.googleapis.com",
         "billingbudgets.googleapis.com"
     ]
+}
+
+# Default Group Sync
+variable "sync_schedule" {
+    type = string
+    description = "Cron schedule, default is every 30 minutes every day"
+    default = "*/30 * * * *"
+  
 }

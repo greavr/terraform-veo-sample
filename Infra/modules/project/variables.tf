@@ -12,8 +12,8 @@ variable "billing_account_id" {}
 
 # Project Owners
 variable "default_admins" {}
-# Project Users
-variable "project_users" {}
+# Project Groups
+variable "project_groups" {}
 
 # Billing Alert Level
 variable "billing_alert_level" {}

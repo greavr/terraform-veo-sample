@@ -14,7 +14,7 @@ resource "google_folder_iam_member" "folder-admins" {
 
   role   = each.value.role
   # Add the "user:" prefix to the email address
-  member = "user:${each.value.member}"
+  member = "group:${each.value.member}"
 
 
   depends_on = [ google_folder.new_folder ]

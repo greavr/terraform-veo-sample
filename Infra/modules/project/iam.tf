@@ -5,7 +5,7 @@
 # Create local sub-list of users
 locals {
   regional_user_members = distinct([
-    for user in var.project_users : "user:${user.email}" if user.region == var.project_location
+    for user in var.project_groups : "group:${user.email}" if user.region == var.project_location
   ])
 }
 
@@ -39,8 +39,8 @@ resource "google_project_iam_member" "owner-roles" {
   }
 
   role   = each.value.role
-  # Add the "user:" prefix to the email address
-  member = "user:${each.value.member}"
+  # Add the "group:" prefix to the email address
+  member = "group:${each.value.member}"
 
   depends_on = [google_project.projects]
 }
