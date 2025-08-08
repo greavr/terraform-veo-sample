@@ -86,7 +86,7 @@ variable "projects_to_build" {
 variable "billing_alert_level" {
     type = number
     description = "Numeric value of the billing alert level, default is 5000 ($5,000)"
-    default = 5000
+    default = 15000
 }
 
 
