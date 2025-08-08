@@ -33,16 +33,52 @@ variable "projects_to_build" {
         })
     )
     default = [{
-            region = "europe-west2"
-            name = "veo-colab-london"
-        },
-        {
             region = "us-west1"
-            name = "veo-colab-oregon"
+            name = "veo-colab-pdx"
         },
         {
-            region = "us-east1"
-            name = "veo-colab-carolina"
+            region = "us-east4"
+            name = "veo-colab-nyc"
+        },
+        {
+            region = "southamerica-east1"
+            name = "veo-colab-sao"
+        },
+        {
+            region = "southamerica-west1"
+            name = "veo-colab-bue"
+        },
+        {
+            region = "northamerica-south1"
+            name = "veo-colab-mex"
+        },
+        {
+            region = "northamerica-northeast2"
+            name = "veo-colab-tor"
+        },
+        {
+            region = "europe-west2"
+            name = "veo-colab-lon"
+        },
+        {
+            region = "europe-west4"
+            name = "veo-colab-ams"
+        },
+        {
+            region = "asia-south2"
+            name = "veo-colab-del"
+        },
+        {
+            region = "asia-east2"
+            name = "veo-colab-sha"
+        },
+        {
+            region = "asia-northeast1"
+            name = "veo-colab-tok"
+        },
+        {
+            region = "australia-southeast1"
+            name = "veo-colab-syd"
         }]
 }
 

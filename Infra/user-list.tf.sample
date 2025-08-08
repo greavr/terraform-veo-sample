@@ -10,51 +10,51 @@ variable "user_list" {
     )
     default = [{
             region = "northamerica-northeast2"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-pdx-general@wk.com"
         },
         {
             region = "us-east4"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-nyc-general@wk.com"
         },
         {
             region = "southamerica-east1"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-sao-general@wk.com"
         },
         {
             region = "southamerica-west1"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-bue-general@wk.com"
         },
         {
             region = "northamerica-south1"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-mex-general@wk.com"
         },
         {
             region = "northamerica-northeast2"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-tor-general@wk.com"
         },
         {
             region = "europe-west2"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-lon-general@wk.com"
         },
         {
             region = "europe-west4"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-ams-general@wk.com"
         },
         {
             region = "asia-south2"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-del-general@wk.com"
         },
         {
             region = "asia-east2"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-sha-general@wk.com"
         },
         {
             region = "asia-northeast1"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-tok-general@wk.com"
         },
         {
             region = "australia-southeast1"
-            email = "vpc-test@rgreaves.altostrat.com"
+            email = "gcp-tok-general@wk.com"
         }
         ]
 }
