@@ -41,7 +41,7 @@ All configuration is managed through a single variables file.
     bootstrap_project_id      = "your-gcp-bootstrap-project-id"
 
     # GCP Billing Account ID for new projects
-    billing_account_id        = "012345-6789AB-CDEF01"
+    billing_account_id        = "012345-6789AB-151544"
 
     # Email of a Google Workspace admin for domain delegation
     delegated_admin_email     = "admin@your-domain.com"
@@ -49,8 +49,8 @@ All configuration is managed through a single variables file.
     # JSON map of Google Groups to process
     # Key: Group Email, Value: A short identifier (e.g., for folder prefixes)
     group_mapping = jsonencode({
-      "gcp-users-prod@your-domain.com" = "prod",
-      "gcp-users-dev@your-domain.com"  = "dev"
+      "gcp-users-del@your-domain.com" = "veo-colab-del",
+      "gcp-users-pbx@your-domain.com"  = "veo-colab-pbx"
     })
     ```
 
