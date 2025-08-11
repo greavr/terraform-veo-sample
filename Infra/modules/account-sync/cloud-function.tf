@@ -16,6 +16,13 @@ resource "google_cloudfunctions2_function" "my_function" {
     }
   }
 
+  event_trigger {
+    trigger_region = var.primary_region
+    event_type     = "google.cloud.pubsub.topic.v1.messagePublished"
+    pubsub_topic   = google_pubsub_topic.function_trigger_topic.id
+    retry_policy   = "RETRY_POLICY_RETRY"
+  }
+
   service_config {
     max_instance_count = 1
     min_instance_count = 0 
@@ -36,6 +43,7 @@ resource "google_cloudfunctions2_function" "my_function" {
 
   depends_on = [
     google_storage_bucket_object.source_object,
-    google_service_account.group-lister-sa
+    google_service_account.group-lister-sa,
+    google_pubsub_topic.function_trigger_topic
   ]
 }

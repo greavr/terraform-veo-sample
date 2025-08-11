@@ -13,7 +13,8 @@ variable "service_to_enable" {
         "cloudfunctions.googleapis.com",
         "cloudbuild.googleapis.com",
         "cloudscheduler.googleapis.com",
-        "artifactregistry.googleapis.com"
+        "artifactregistry.googleapis.com",
+        "pubsub.googleapis.com"
     ]
 }
 

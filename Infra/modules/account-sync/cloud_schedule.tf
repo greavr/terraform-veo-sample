@@ -7,18 +7,14 @@ resource "google_cloud_scheduler_job" "job" {
   time_zone = "Etc/UTC"
   region = var.primary_region
 
-  http_target {
-    http_method = "POST"
-    uri         = google_cloudfunctions2_function.my_function.service_config[0].uri
-
-    # Use OIDC for secure, authenticated invocations
-    oidc_token {
-      service_account_email = google_cloudfunctions2_function.my_function.service_config[0].service_account_email
-      # The 'audience' is automatically inferred from the 'uri' by the provider.
-    }
+  pubsub_target {
+    # Points to the Pub/Sub topic created above
+    topic_name = google_pubsub_topic.function_trigger_topic.id
+    # The message body sent to the function (can be anything)
+    data = base64encode("trigger")
   }
 
   depends_on = [
-    google_cloudfunctions2_function.my_function
+    google_pubsub_topic.function_trigger_topic
   ]
 }

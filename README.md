@@ -48,7 +48,7 @@ This step is required manually
 **Configuring Domain-Wide Delegation** 
 1.  First, get the **Unique ID** (Client ID) of the service account. **Do not use the email address for this step.**
     ```bash
-    gcloud iam service-accounts describe group-lister-sa@{your-project-id}.iam.gserviceaccount.com --project="your-project-id" --format='value(oauth2ClientId)'
+    gcloud iam service-accounts describe group-lister-sa@{your-project-id}.iam.gserviceaccount.com --project="{your-project-id}" --format='value(oauth2ClientId)'
     ```
     Copy the long number that is returned.
 2.  Navigate to your **Google Admin Console**: [admin.google.com](http://admin.google.com)
@@ -58,7 +58,8 @@ This step is required manually
 6.  Paste the **Unique ID** from step 1 into the **Client ID** field.
 7.  In the **OAuth Scopes** field, paste the following scopes exactly as they are, separated by a comma:
     ```
-    [https://www.googleapis.com/auth/admin.directory.group.member.readonly,https://www.googleapis.com/auth/admin.directory.user.readonly](https://www.googleapis.com/auth/admin.directory.group.member.readonly,https://www.googleapis.com/auth/admin.directory.user.readonly)
+    https://www.googleapis.com/auth/admin.directory.group.member.readonly,
+    https://www.googleapis.com/auth/admin.directory.user.readonly
     ```
 8.  Click **Authorize**.
 
