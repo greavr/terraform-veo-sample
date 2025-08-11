@@ -40,6 +40,7 @@ variable "DELEGATED_ADMIN_EMAIL"{
 # Folder To Project Mappiong
 variable "GROUP_MAPPING"{
     description = "Mapping of Google Group to Projects"
+    type = map(string)
 }
 
 # ----------------------------------------------------------------------------------------------------------------------

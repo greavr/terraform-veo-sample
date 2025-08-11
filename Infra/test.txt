@@ -1,0 +1,12 @@
+"gcp-tok-general@wk.com":"veo-colab-pdx",
+"gcp-nyc-general@wk.com":"veo-colab-nyc",
+"gcp-sao-general@wk.com":"veo-colab-sao",
+"gcp-bue-general@wk.com":"veo-colab-bue",
+"gcp-mex-general@wk.com":"veo-colab-mex",
+"gcp-tor-general@wk.com":"veo-colab-tor",
+"gcp-lon-general@wk.com":"veo-colab-lon",
+"gcp-ams-general@wk.com":"veo-colab-ams",
+"gcp-del-general@wk.com":"veo-colab-del",
+"gcp-sha-general@wk.com":"veo-colab-sha",
+"gcp-tok-general@wk.com":"veo-colab-tok",
+"gcp-syd-general@wk.com":"veo-colab-syd"
