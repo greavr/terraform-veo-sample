@@ -30,6 +30,18 @@ variable "host_project_id" {
     description = "Project used to configure billing alerts and run the cloud function script"
     type = string
 }
+
+# Google Admin Email Account
+variable "DELEGATED_ADMIN_EMAIL"{
+    description = "Project used to configure billing alerts and run the cloud function script"
+    type = string
+}
+
+# Folder To Project Mappiong
+variable "GROUP_MAPPING"{
+    description = "Mapping of Google Group to Projects"
+}
+
 # ----------------------------------------------------------------------------------------------------------------------
 # Default Variables
 # ----------------------------------------------------------------------------------------------------------------------

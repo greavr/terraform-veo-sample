@@ -19,3 +19,15 @@ resource "google_folder_iam_member" "folder-admins" {
 
   depends_on = [ google_folder.new_folder ]
 }
+
+# Asssign CF Permissions
+resource "google_folder_iam_member" "cf_sa_roles" {
+    folder = google_folder.new_folder.id
+    
+    for_each = toset(var.cf_sa_roles)
+    role    = "roles/${each.value}"
+    member  = "serviceAccount:${var.cf-sa}"
+
+
+    depends_on = [ google_folder.new_folder ]
+}

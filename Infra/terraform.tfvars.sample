@@ -4,3 +4,5 @@ billing_account_id          = "XXXXX"
 default_admins              = ["a@bc.com"]
 billing_alert_email         = ["a@b.com"]
 host_project_id             = "abcd"
+DELEGATED_ADMIN_EMAIL       = "a@b.com"
+GROUP_MAPPING               = '{"group1@example.com": "us-west1-a", "group2@example.com": "us-central1-a"}'

@@ -1,4 +1,19 @@
 # ----------------------------------------------------------------------------------------------------------------------
+# Create Cloud Function
+# ----------------------------------------------------------------------------------------------------------------------
+module "create_sync" {
+    source  = "./modules/account-sync"
+
+    gcp_project = var.host_project_id
+    default_schedule = var.sync_schedule
+
+    DELEGATED_ADMIN_EMAIL = var.DELEGATED_ADMIN_EMAIL
+    GROUP_MAPPING = var.GROUP_MAPPING
+    
+    
+}
+
+# ----------------------------------------------------------------------------------------------------------------------
 # Create Folder
 # ----------------------------------------------------------------------------------------------------------------------
 module "create_folder" {
@@ -13,6 +28,9 @@ module "create_folder" {
 
     org_id = var.org_id
 
+    cf-sa = module.create_sync.cf-sa
+
+    depends_on = [ module.create_sync ]
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -45,16 +63,4 @@ module "create_project" {
     depends_on = [ module.create_folder ]
 }
 
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Create Cloud Function
-# ----------------------------------------------------------------------------------------------------------------------
-module "create_sync" {
-    source  = "./modules/account-sync"
-
-    gcp_project = var.host_project_id
-    default_schedule = var.sync_schedule
-
-    depends_on = [ module.create_folder ]
-}
 

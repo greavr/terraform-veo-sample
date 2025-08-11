@@ -22,9 +22,20 @@ resource "google_cloudfunctions2_function" "my_function" {
     timeout_seconds    = 60
     # Allow all traffic, as we will rely on OIDC for secure auth from the scheduler
     ingress_settings   = "ALLOW_ALL"
+
+    # Assign Custom Service Account
+    service_account_email = google_service_account.group-lister-sa.email
+
+    # Add environment variables
+    environment_variables = {
+      GROUP_MAPPING = var.GROUP_MAPPING
+      DELEGATED_ADMIN_EMAIL  = var.DELEGATED_ADMIN_EMAIL
+    }
+
   }
 
   depends_on = [
-    google_storage_bucket_object.source_object
+    google_storage_bucket_object.source_object,
+    google_service_account.group-lister-sa
   ]
 }
