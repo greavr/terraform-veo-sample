@@ -7,7 +7,7 @@ resource "google_cloudfunctions2_function" "my_function" {
   
   build_config {
     runtime     = "python311"
-    entry_point = "scheduled_function_handler" # Must match function name in main.py
+    entry_point = "list_group_members_cron" # Must match function name in main.py
     source {
       storage_source {
         bucket = google_storage_bucket.source_bucket.name
