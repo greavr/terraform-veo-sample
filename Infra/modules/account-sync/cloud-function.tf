@@ -35,7 +35,7 @@ resource "google_cloudfunctions2_function" "my_function" {
 
     # Add environment variables
     environment_variables = {
-      GROUP_MAPPING = var.GROUP_MAPPING
+      GROUP_MAPPING = jsonencode(var.GROUP_MAPPING)
       DELEGATED_ADMIN_EMAIL  = var.DELEGATED_ADMIN_EMAIL
     }
 

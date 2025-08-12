@@ -2,7 +2,15 @@
 org_id                      = "1234567890"
 billing_account_id          = "XXXXX"
 default_admins              = ["a@bc.com"]
-billing_alert_email         = ["a@b.com"]
+billing_alert_email         = {
+        "northamerica-northeast2": "pbx-budgetalerts-gcp@b.com",
+        "us-east4": "nyc-budgetalerts-gcp@b.com",
+        "southamerica-east1":"sao-budgetalerts-gcp@b.com"
+}
 host_project_id             = "abcd"
 DELEGATED_ADMIN_EMAIL       = "a@b.com"
-GROUP_MAPPING               = '{"group1@example.com": "us-west1-a", "group2@example.com": "us-central1-a"}'
+global_access_group         = ["a@b.com"]
+GROUP_MAPPING               = {
+    "group1@example.com": "us-west1-a", 
+    "group2@example.com": "us-central1-a"
+    }

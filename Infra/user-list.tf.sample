@@ -54,7 +54,7 @@ variable "group_list" {
         },
         {
             region = "australia-southeast1"
-            email = "gcp-tok-general@wk.com"
+            email = "gcp-syd-general@wk.com"
         }
         ]
 }

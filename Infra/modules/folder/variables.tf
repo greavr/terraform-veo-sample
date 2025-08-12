@@ -20,3 +20,7 @@ variable "cf_sa_roles" {
         "storage.objectAdmin"
     ]
 }
+
+# Global Access Group
+variable "global_access_group" {}
+variable "global_access_group_permissions" {}

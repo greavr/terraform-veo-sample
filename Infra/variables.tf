@@ -9,8 +9,8 @@ variable "billing_account_id" {
 
 # Billing alert email
 variable "billing_alert_email" {
-    type = string
-    description = "Email to notify for spend alerts"
+    type = map(string)
+    description = "Key Pair of region:billing-email"
 }
 
 # Project Owners
@@ -43,6 +43,12 @@ variable "GROUP_MAPPING"{
     type = map(string)
 }
 
+# Global Access Group
+variable "global_access_group" {
+    description = "Group which has access to every project"
+    type = list(string)
+    default = {}
+}
 # ----------------------------------------------------------------------------------------------------------------------
 # Default Variables
 # ----------------------------------------------------------------------------------------------------------------------

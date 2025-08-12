@@ -25,6 +25,9 @@ module "create_folder" {
     # Permissions
     default_admins = var.default_admins
     owner_permissions = var.owner_project_permissions
+    global_access_group = var.global_access_group
+    global_access_group_permissions = var.user_project_permissions
+
 
     org_id = var.org_id
 
