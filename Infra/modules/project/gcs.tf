@@ -7,8 +7,8 @@ resource "google_storage_bucket" "bucket" {
     location                    = var.project_location
     force_destroy               = true 
     storage_class               = "STANDARD" 
-    uniform_bucket_level_access = false      
-
+    uniform_bucket_level_access = true
+    
     versioning {
         enabled = false
     }

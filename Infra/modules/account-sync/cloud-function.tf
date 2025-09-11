@@ -31,7 +31,7 @@ resource "google_cloudfunctions2_function" "my_function" {
     ingress_settings   = "ALLOW_ALL"
 
     # Assign Custom Service Account
-    service_account_email = google_service_account.group-lister-sa.email
+    service_account_email = google_service_account.group-reader-sa.email
 
     # Add environment variables
     environment_variables = {
@@ -43,7 +43,7 @@ resource "google_cloudfunctions2_function" "my_function" {
 
   depends_on = [
     google_storage_bucket_object.source_object,
-    google_service_account.group-lister-sa,
+    google_service_account.group-reader-sa,
     google_pubsub_topic.function_trigger_topic
   ]
 }

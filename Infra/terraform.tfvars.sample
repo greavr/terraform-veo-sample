@@ -11,6 +11,7 @@ host_project_id             = "abcd"
 DELEGATED_ADMIN_EMAIL       = "a@b.com"
 global_access_group         = ["a@b.com"]
 GROUP_MAPPING               = {
-    "group1@example.com": "us-west1-a", 
-    "group2@example.com": "us-central1-a"
+        "bake-off-admins@rgreaves.altostrat.com":"veo-colab-nyc",
+        "vpc-test@rgreaves.altostrat.com":"veo-colab-seo",
+        "vpc-test@rgreaves.altostrat.com":"veo-colab-tor"
     }

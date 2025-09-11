@@ -15,7 +15,11 @@ variable "service_to_enable" {
         "cloudscheduler.googleapis.com",
         "artifactregistry.googleapis.com",
         "pubsub.googleapis.com",
-        "eventarc.googleapis.com"
+        "eventarc.googleapis.com",
+        "cloudbilling.googleapis.com",
+        "billingbudgets.googleapis.com",
+        "logging.googleapis.com",
+        "admin.googleapis.com"
     ]
 }
 

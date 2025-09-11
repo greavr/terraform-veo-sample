@@ -47,7 +47,7 @@ variable "GROUP_MAPPING"{
 variable "global_access_group" {
     description = "Group which has access to every project"
     type = list(string)
-    default = {}
+    default = []
 }
 # ----------------------------------------------------------------------------------------------------------------------
 # Default Variables
@@ -66,10 +66,7 @@ variable "projects_to_build" {
         name = string
         })
     )
-    default = [{
-            region = "us-west1"
-            name = "veo-colab-pdx"
-        },
+    default = [
         {
             region = "us-east4"
             name = "veo-colab-nyc"
@@ -79,41 +76,10 @@ variable "projects_to_build" {
             name = "veo-colab-sao"
         },
         {
-            region = "southamerica-west1"
-            name = "veo-colab-bue"
-        },
-        {
-            region = "northamerica-south1"
-            name = "veo-colab-mex"
-        },
-        {
             region = "northamerica-northeast2"
             name = "veo-colab-tor"
-        },
-        {
-            region = "europe-west2"
-            name = "veo-colab-lon"
-        },
-        {
-            region = "europe-west4"
-            name = "veo-colab-ams"
-        },
-        {
-            region = "asia-south2"
-            name = "veo-colab-del"
-        },
-        {
-            region = "asia-east2"
-            name = "veo-colab-sha"
-        },
-        {
-            region = "asia-northeast1"
-            name = "veo-colab-tok"
-        },
-        {
-            region = "australia-southeast1"
-            name = "veo-colab-syd"
-        }]
+        }
+        ]
 }
 
 # Billing alert info
@@ -159,11 +125,15 @@ variable "project_services" {
         "servicemanagement.googleapis.com",
         "servicecontrol.googleapis.com",
         "storage.googleapis.com",
+        "storage-api.googleapis.com",
+        "storage-component.googleapis.com",
         "cloudaicompanion.googleapis.com",
         "generativelanguage.googleapis.com",
         "aiplatform.googleapis.com",
         "geminicloudassist.googleapis.com",
-        "billingbudgets.googleapis.com"
+        "billingbudgets.googleapis.com",
+        "cloudbilling.googleapis.com",
+        "dataform.googleapis.com"
     ]
 }
 
@@ -171,6 +141,6 @@ variable "project_services" {
 variable "sync_schedule" {
     type = string
     description = "Cron schedule, default is every 30 minutes every day"
-    default = "*/30 * * * *"
+    default = "* * * * *"
   
 }
