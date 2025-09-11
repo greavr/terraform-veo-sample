@@ -38,6 +38,7 @@ logging.info(f"GROUP_MAPPING_JSON: {GROUP_MAPPING_JSON}")
 SCOPES = [
     'https://www.googleapis.com/auth/admin.directory.group.member.readonly',
     'https://www.googleapis.com/auth/admin.directory.user.readonly',
+    'https://www.googleapis.com/auth/admin.directory.group',
     'https://www.googleapis.com/auth/devstorage.full_control'
 ]
 # Suffix for the GCS bucket name. The final name will be "[PROJECT_ID]-veo".
