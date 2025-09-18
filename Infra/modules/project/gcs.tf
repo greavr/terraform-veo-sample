@@ -15,37 +15,3 @@ resource "google_storage_bucket" "bucket" {
 
     depends_on = [google_project_service.enable-services]
 }
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Create Folder Per User
-# ----------------------------------------------------------------------------------------------------------------------
-resource "google_storage_bucket_object" "user_folders" {
-    bucket  = google_storage_bucket.bucket.name
-
-    for_each = {
-      for user in var.project_groups : "${user.email}-${user.region}" => user if user.region == var.project_location
-    }
-
-    name    = "${split("@", each.value.email)[0]}/" # Creates a folder for each user, e.g., "rgreaves@google.com becomes rgreaves/"
-    content = " "            # The content can be empty for a folder placeholder   
-
-    depends_on = [google_storage_bucket.bucket]          
-}
-
-
-# ----------------------------------------------------------------------------------------------------------------------
-# Set permissions for each user on their folder
-# ----------------------------------------------------------------------------------------------------------------------
-resource "google_storage_object_acl" "user_folder_acl" {
-    for_each = {
-      for user in var.project_groups : "${user.email}-${user.region}" => user if user.region == var.project_location
-    }
-
-  bucket = google_storage_bucket.bucket.name
-  object = google_storage_bucket_object.user_folders[each.key].name
-  role_entity = [
-    "OWNER:group-${each.value.email}" # Grants the user ownership of their folder
-  ]
-
-  depends_on = [ google_storage_bucket_object.user_folders ]
-}

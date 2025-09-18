@@ -8,7 +8,7 @@ import sys # Added for stdout stream
 from google.cloud.logging.handlers import StructuredLogHandler # Import the correct handler
 from google.api_core.exceptions import NotFound
 from google.cloud import storage
-from google.auth.impersonated_credentials import ImpersonatedCredentials
+import google.auth
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from googleapiclient.errors import HttpError
@@ -43,17 +43,17 @@ SCOPES = [
 ]
 # Suffix for the GCS bucket name. The final name will be "[PROJECT_ID]-veo".
 BUCKET_NAME_SUFFIX = "-veo"
-
+CREDS_FILE_PATH = os.environ.get('CREDS_FILE_PATH')
 
 def get_directory_service():
     """Builds an authenticated Google Admin SDK Directory service object."""
-    CREDS_FILE = 'creds.json'
 
     # Check if a local credentials file exists
-    if os.path.exists(CREDS_FILE):
+    if CREDS_FILE_PATH and os.path.exists(CREDS_FILE_PATH):
+        logging.info(f"Authenticating using mounted key file: {CREDS_FILE_PATH}")
         # Authenticate using the service account key file
         credentials = service_account.Credentials.from_service_account_file(
-            CREDS_FILE,
+            CREDS_FILE_PATH,
             scopes=SCOPES
         )
         # Impersonate the delegated admin user
@@ -88,7 +88,8 @@ def create_user_folder_and_set_permissions(project_id, user_email):
         bucket = storage_client.get_bucket(bucket_name)
 
         # 1. Create folder (a zero-byte object with a trailing slash) if it doesn't exist.
-        folder_path = f"{user_email}/"
+        folder_name = user_email.split('@')[0]
+        folder_path = f"{folder_name}/"
         blob = bucket.blob(folder_path)
 
         if not blob.exists():
@@ -107,7 +108,7 @@ def create_user_folder_and_set_permissions(project_id, user_email):
         role = "roles/storage.objectAdmin"
         member = f"user:{user_email}"
         condition_title = f"access_for_{user_email.replace('@', '_').replace('.', '_')}"
-        condition_expression = f'resource.name.startsWith("projects/_/buckets/{bucket_name}/objects/{user_email}/")'
+        condition_expression = f'resource.name.startsWith("projects/_/buckets/{bucket_name}/objects/{folder_name}/")'
 
         # --- Robust Idempotency Check ---
         # Manually check if a binding with the same role, member, and condition already exists.

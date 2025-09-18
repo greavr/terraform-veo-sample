@@ -1,4 +1,3 @@
-
 # ----------------------------------------------------------------------------------------------------------------------
 # CREATE SERVICE ACCOUNT & Permissions
 # ----------------------------------------------------------------------------------------------------------------------
@@ -19,4 +18,11 @@ resource "google_project_iam_member" "service_account-roles" {
 
 
     depends_on = [ google_service_account.group-reader-sa ]
+}
+
+resource "google_service_account_key" "my_key" {
+  # This is the SA you are creating a key FOR
+  service_account_id = google_service_account.group-reader-sa.email
+
+  depends_on = [ google_service_account.group-reader-sa ]
 }

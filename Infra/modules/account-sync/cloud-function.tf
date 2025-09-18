@@ -4,7 +4,8 @@
 resource "google_cloudfunctions2_function" "my_function" {
   name     = "user-folder-creation"
   location = var.primary_region
-  
+
+
   build_config {
     runtime     = "python311"
     entry_point = "process_groups_and_create_folders" # Must match function name in main.py
@@ -37,6 +38,21 @@ resource "google_cloudfunctions2_function" "my_function" {
     environment_variables = {
       GROUP_MAPPING = jsonencode(var.GROUP_MAPPING)
       DELEGATED_ADMIN_EMAIL  = var.DELEGATED_ADMIN_EMAIL
+      CREDS_FILE_PATH = "/etc/gcp-keys/creds.json"
+    }
+
+        # This block mounts the secret as a file
+    secret_volumes {
+      project_id = var.gcp_project
+      mount_path = "/etc/gcp-keys" # The directory in the container
+      
+      # The ID of the secret in Secret Manager
+      secret = google_secret_manager_secret.key_secret.secret_id
+
+      versions {
+        version = "latest"        # Use the "latest" version
+        path    = "creds.json"    # Mount it as a file named "creds.json"
+      }
     }
 
   }
@@ -44,6 +60,7 @@ resource "google_cloudfunctions2_function" "my_function" {
   depends_on = [
     google_storage_bucket_object.source_object,
     google_service_account.group-reader-sa,
-    google_pubsub_topic.function_trigger_topic
+    google_pubsub_topic.function_trigger_topic,
+    google_secret_manager_secret_version.key_version
   ]
 }

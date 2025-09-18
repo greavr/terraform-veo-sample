@@ -29,6 +29,8 @@ variable "primary_region" {
 
 variable "cf_sa_roles" {
   default = [
-    "storage.objectAdmin"
+    "storage.objectAdmin",
+    "logging.logWriter",
+    "secretmanager.secretAccessor"
   ]
 }

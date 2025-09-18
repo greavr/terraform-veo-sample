@@ -9,7 +9,7 @@ ENV APP_HOME=/app
 WORKDIR $APP_HOME
 
 # Copy the requirements file and install dependencies
-COPY . .
+COPY main.py requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 CMD ["python3", "main.py"]
